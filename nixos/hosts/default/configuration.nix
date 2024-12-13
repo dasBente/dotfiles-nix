@@ -90,28 +90,14 @@
     ];
   };
 
-  system.userActivationScripts.zshrc = "touch .zshrc";
+  # system.userActivationScripts.zshrc = "touch .zshrc";
 
   programs.firefox.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = false;
+  programs.zsh.enable = true;
 
-    shellAliases = {
-      ll = "ls -l";
-      edit = "sudo -e";
-      update = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos/#default";
-    };
-
-    ohMyZsh = {
-      enable = true;
-      plugins = ["git" "z" "node" "npm" "aliases"];
-      theme = "avit";
-    };
-  };
+  #programs.zsh = {
+  #};
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
