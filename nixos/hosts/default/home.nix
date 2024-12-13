@@ -6,7 +6,6 @@
   home.stateVersion = "24.11"; # do not touch unless necessary!
 
   home.packages = [
-    pkgs.neovim
   ];
 
   home.file = {
@@ -41,6 +40,15 @@
     "video/png" = [ "mpv.desktop" ];
     "video/jpg" = [ "mpv.desktop" ];
     "video/*" = [ "mpv.desktop" ];
+  };
+
+  programs.neovim = {
+    enable = true;
+
+    extraLuaConfig = ''
+      ${builtins.readFile ./nvim/options.lua}
+      ${builtins.readFile ./nvim/remap.lua}
+    '';
   };
 
   programs.zsh = {
