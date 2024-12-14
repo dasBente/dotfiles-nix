@@ -29,14 +29,14 @@
         specialArgs = {inherit inputs system;};
 
         modules = [
-          ./hosts/default/configuration.nix
+          ./nixos/hosts/default/configuration.nix
         ];
       };
     };
     homeConfiguration."dasbente" =
       inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ .nixos/home.nix ];
+        modules = [ ./home-manager/home.nix ];
         extraSpecialArgs = { inherit inputs; };
       };
   };
