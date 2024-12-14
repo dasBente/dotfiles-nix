@@ -42,13 +42,26 @@
     "video/*" = [ "mpv.desktop" ];
   };
 
-  programs.neovim = {
+  programs.neovim = 
+  let
+    toLua = str: "lua << EOF\n${str}\nEOF\n";
+	toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+  in {
     enable = true;
 
     extraLuaConfig = ''
       ${builtins.readFile ./nvim/options.lua}
       ${builtins.readFile ./nvim/remap.lua}
     '';
+	
+	plugins = with pkgs.vimPlugins; [
+		{
+			plugin = which-key-nvim;
+			config = toLuaFile ./nvim/plugin/which-key.lua;
+		}
+
+		neodev-nvim
+	];
   };
 
   programs.zsh = {
