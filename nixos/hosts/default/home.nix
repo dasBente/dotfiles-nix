@@ -60,12 +60,36 @@
     '';
 	
 	plugins = with pkgs.vimPlugins; [
-		{
+
+		luasnip
+                {
+                	plugin = nvim-lspconfig;
+                	config = toLuaFile ./nvim/plugin/lsp.lua;
+                }
+
+                {
 			plugin = which-key-nvim;
 			config = toLuaFile ./nvim/plugin/which-key.lua;
 		}
 
+        {
+                	plugin = nvim-cmp;
+                	config = toLuaFile ./nvim/plugin/cmp.lua;
+                }
+		
+		{
+			plugin = comment-nvim;
+			config = toLua "require(\"Comment\").setup()";
+		}
+		
+        {
+            plugin = telescope-nvim;
+            config = toLuaFile ./nvim/plugin/telescope.lua;
+        }
+
 		neodev-nvim
+		nvim-web-devicons
+		cmp-nvim-lsp
 
 		{
 			plugin = (nvim-treesitter.withPlugins (p: [
@@ -78,6 +102,8 @@
 			]));
 			config = toLuaFile ./nvim/plugin/treesitter.lua;
 		}
+
+		vim-nix
 	];
   };
 
