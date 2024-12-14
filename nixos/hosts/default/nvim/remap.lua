@@ -52,6 +52,9 @@ vim.keymap.set(
     { desc = "New buffer (horizontal)" }
 )
 
+-- fugitive
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Fugitive" })
+
 -- unbind
 local unbind_keys = {
     "Q", "<Up>", "<Left>", "<Right>", "<Down>", "<PageUp>", "<PageDown>"

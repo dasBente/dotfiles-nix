@@ -32,6 +32,7 @@
         luasnip
         neodev-nvim
         nvim-web-devicons
+        vim-fugitive
 
         {
           plugin = which-key-nvim;
