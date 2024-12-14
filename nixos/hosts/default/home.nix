@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   home.username = "dasbente";
   home.homeDirectory = "/home/dasbente";
@@ -48,10 +47,16 @@
 	toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
   in {
     enable = true;
+    
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
 
 	extraPackages = with pkgs; [
-		lua-language-server
+        lua-language-server
 		nil
+        xclip
+        wl-clipboard
 	];
 
     extraLuaConfig = ''
@@ -60,22 +65,23 @@
     '';
 	
 	plugins = with pkgs.vimPlugins; [
-
 		luasnip
-                {
-                	plugin = nvim-lspconfig;
-                	config = toLuaFile ./nvim/plugin/lsp.lua;
-                }
+        lsp-zero-nvim
 
-                {
+        {
+        	plugin = nvim-lspconfig;
+           	config = toLuaFile ./nvim/plugin/lsp.lua;
+        }
+
+        {
 			plugin = which-key-nvim;
 			config = toLuaFile ./nvim/plugin/which-key.lua;
 		}
 
         {
-                	plugin = nvim-cmp;
-                	config = toLuaFile ./nvim/plugin/cmp.lua;
-                }
+            plugin = nvim-cmp;
+            config = toLuaFile ./nvim/plugin/cmp.lua;
+        }
 		
 		{
 			plugin = comment-nvim;
@@ -90,6 +96,7 @@
 		neodev-nvim
 		nvim-web-devicons
 		cmp-nvim-lsp
+        cmp_luasnip
 
 		{
 			plugin = (nvim-treesitter.withPlugins (p: [
