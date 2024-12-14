@@ -54,7 +54,7 @@
    shellAliases = {
      ll = "ls -l";
      edit = "sudo -e";
-     update = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos/#default";
+     update = "sudo nixos-rebuild switch --flake /home/$SUDO_USER/dotfiles/nixos/#default";
    };
 
    oh-my-zsh = {
