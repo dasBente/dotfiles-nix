@@ -1,5 +1,20 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
+  nixpkgs = {
+    overlays = [
+      (final: prev: {
+
+        vimPlugins = prev.vimPlugins // {
+          monokai-pro-nvim = prev.vimUtils.buildVimPlugin {
+            name = "monokai-pro";
+            src = inputs.monokai-pro-nvim;
+          };
+        };
+
+      })
+    ];
+  };
+
   programs.neovim =
     let
       toLua = str: "lua << EOF\n${str}\nEOF\n";
@@ -43,6 +58,11 @@
         {
           plugin = comment-nvim;
           config = toLua "require(\"Comment\").setup()";
+        }
+
+        {
+          plugin = monokai-pro-nvim;
+          config = toLuaFile ./plugin/monokai.lua;
         }
 
         # cmp and plugins

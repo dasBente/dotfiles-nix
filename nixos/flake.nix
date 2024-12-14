@@ -8,6 +8,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    monokai-pro-nvim = {
+      url = "github:loctvl842/monokai-pro.nvim";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: 
@@ -28,5 +33,11 @@
         ];
       };
     };
+    homeConfiguration."dasbente" =
+      inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ .nixos/home.nix ];
+        extraSpecialArgs = { inherit inputs; };
+      };
   };
 }

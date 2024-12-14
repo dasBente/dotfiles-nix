@@ -20,6 +20,22 @@
         "type": "github"
       }
     },
+    "monokai-pro-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732084290,
+        "narHash": "sha256-4g0uZvpifP1Lsi67gbpXwpueZdx4yIgLPiSE0lQf3HY=",
+        "owner": "loctvl842",
+        "repo": "monokai-pro.nvim",
+        "rev": "d79eef3cbbd2e8323e9c2131a912c0131b6dbc85",
+        "type": "github"
+      },
+      "original": {
+        "owner": "loctvl842",
+        "repo": "monokai-pro.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1733759999,
@@ -39,6 +55,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "monokai-pro-nvim": "monokai-pro-nvim",
         "nixpkgs": "nixpkgs"
       }
     }
