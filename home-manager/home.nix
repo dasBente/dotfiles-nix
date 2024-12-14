@@ -8,7 +8,14 @@
   home.homeDirectory = "/home/dasbente";
   home.stateVersion = "24.11"; # do not touch unless necessary!
 
-  home.packages = [
+  home.packages = with pkgs; 
+  let
+    loadBin = cmd: file: (
+      writeShellScriptBin "${cmd}" (builtins.readFile "${file}")
+    );
+  in [
+    fzf
+    (loadBin "tmux-sessionizer" ./bins/tmux-sessionizer)
   ];
 
   home.file = {
@@ -62,6 +69,10 @@
       plugins = ["git" "z" "node" "npm" "aliases"];
       theme = "avit";
     };
+
+    initExtra = ''
+    bindkey -s ^f "tmux-sessionizer\n"
+    '';
   };
 
   programs.tmux = {
@@ -75,6 +86,7 @@
 
     extraConfig = ''
     set-option -g status-position top
+    bind C-f run-shell "tmux neww tmux-sessionizer"
     '';
   };
 

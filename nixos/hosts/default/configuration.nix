@@ -49,6 +49,7 @@
   console.keyMap = "de";
 
   services.printing.enable = true;
+  environment.pathsToLink = [ "/share/zsh" ];
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
