@@ -4,14 +4,14 @@ require("telescope").setup()
 
 local builtin = require("telescope.builtin")
 
-local map = function (mode, key, fn, desc)
-	vim.keymap.set(mode, key, fn, { desc = desc })	
+local remap = function (mode, key, fn, desc)
+	vim.keymap.set(mode, key, fn, { desc = desc })
 end
 
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find file" })
-map("n", "<leader>fg", builtin.live_grep, "Live grep")
-map("n", "<leader>fb", builtin.buffers, "Find in buffers")
-map("n", "<leader>fh", builtin.help_tags, "Search help")
+remap("n", "<leader>ff", builtin.find_files, "Find file")
+remap("n", "<leader>fg", builtin.live_grep, "Live grep")
+remap("n", "<leader>fb", builtin.buffers, "Find in buffers")
+remap("n", "<leader>fh", builtin.help_tags, "Search help")
 
 -- todo: git bindings
 

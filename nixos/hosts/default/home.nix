@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.username = "dasbente";
   home.homeDirectory = "/home/dasbente";
@@ -64,7 +64,10 @@
     extraLuaConfig = ''
       ${builtins.readFile ./nvim/options.lua}
       ${builtins.readFile ./nvim/remap.lua}
+      ${builtins.readFile ./nvim/plugin/telescope.lua}
     '';
+
+    defaultEditor = true;
 	
 	plugins = with pkgs.vimPlugins; [
 		luasnip
@@ -90,11 +93,7 @@
 			config = toLua "require(\"Comment\").setup()";
 		}
 		
-        {
-            plugin = telescope-nvim;
-            config = toLuaFile ./nvim/plugin/telescope.lua;
-        }
-
+        telescope-nvim
 		neodev-nvim
 		nvim-web-devicons
 		cmp-nvim-lsp
