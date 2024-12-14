@@ -57,6 +57,8 @@
 		nil
         xclip
         wl-clipboard
+        ripgrep
+        fd
 	];
 
     extraLuaConfig = ''
