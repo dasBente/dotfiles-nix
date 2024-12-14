@@ -30,34 +30,41 @@
 
       plugins = with pkgs.vimPlugins; [
         luasnip
-        lsp-zero-nvim
-
-        {
-          plugin = nvim-lspconfig;
-          config = toLuaFile ./plugin/lsp.lua;
-        }
+        neodev-nvim
+        nvim-web-devicons
 
         {
           plugin = which-key-nvim;
           config = toLuaFile ./plugin/which-key.lua;
         }
 
-        {
-          plugin = nvim-cmp;
-          config = toLuaFile ./plugin/cmp.lua;
-        }
 
         {
           plugin = comment-nvim;
           config = toLua "require(\"Comment\").setup()";
         }
 
-        telescope-nvim
-        neodev-nvim
-        nvim-web-devicons
+        # cmp and plugins
         cmp-nvim-lsp
         cmp_luasnip
 
+        {
+          plugin = nvim-cmp;
+          config = toLuaFile ./plugin/cmp.lua;
+        }
+
+        # lsp
+        lsp-zero-nvim
+        {
+          plugin = nvim-lspconfig;
+          config = toLuaFile ./plugin/lsp.lua;
+        }
+
+        # telescope
+        telescope-nvim
+        telescope-undo-nvim
+
+        # treesitter
         {
           plugin = (nvim-treesitter.withPlugins (p: [
             p.tree-sitter-nix
