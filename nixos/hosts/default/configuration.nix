@@ -39,7 +39,22 @@
   services.xserver.enable = true;
 
   services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+  };
+
+  hardware = {
+    graphics.enable = true;
+    nvidia.modesetting.enable = true;
+  };
 
   services.xserver.xkb = {
     layout = "de";
@@ -72,11 +87,28 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
   environment.systemPackages = with pkgs; [
     pkgs.home-manager
     lf
     kitty
     git
+    networkmanagerapplet
+
+    # hyprland packages
+    swww
+    dunst
+    rofi-wayland
+
+    (waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    }))
+  ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.roboto-mono
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
