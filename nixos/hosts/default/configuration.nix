@@ -70,6 +70,7 @@
       git
       networkmanagerapplet
       firefox-wayland
+      discord-ptb
 
       # hyprland packages
       swww
