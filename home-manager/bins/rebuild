@@ -7,7 +7,7 @@
 
 set -e
 pushd ~/dotfiles
-#nvim flake.nix
+nvim flake.nix
 
 alejandra . &>/dev/null
 

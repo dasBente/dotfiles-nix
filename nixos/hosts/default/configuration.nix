@@ -99,6 +99,7 @@
     kitty
     git
     networkmanagerapplet
+    firefox-wayland
 
     # hyprland packages
     swww
