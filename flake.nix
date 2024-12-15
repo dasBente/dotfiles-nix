@@ -15,15 +15,17 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: 
-  let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
-      config = { allowUnfree = true; };
+      config = {allowUnfree = true;};
     };
-  in
-  {
+  in {
     nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs system;};
@@ -33,11 +35,10 @@
         ];
       };
     };
-    homeConfiguration."dasbente" =
-      inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home-manager/home.nix ];
-        extraSpecialArgs = { inherit inputs; };
-      };
+    homeConfiguration."dasbente" = inputs.home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [./home-manager/home.nix];
+      extraSpecialArgs = {inherit inputs;};
+    };
   };
 }

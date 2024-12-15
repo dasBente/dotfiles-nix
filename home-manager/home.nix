@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./nvim/config.nix
   ];
@@ -8,14 +7,16 @@
   home.homeDirectory = "/home/dasbente";
   home.stateVersion = "24.11"; # do not touch unless necessary!
 
-  home.packages = with pkgs; 
-  let
+  home.packages = with pkgs; let
     loadBin = cmd: file: (
       writeShellScriptBin "${cmd}" (builtins.readFile "${file}")
     );
   in [
     fzf
+    alejandra
+
     (loadBin "tmux-sessionizer" ./bins/tmux-sessionizer)
+    (loadBin "rebuild" ./bins/rebuild)
   ];
 
   home.file = {
@@ -30,9 +31,9 @@
     userName = "dasBente";
     userEmail = "dasbente@gmail.com";
     extraConfig = {
-      push = { autoSetupRemote = true; };
-      core = { editor = "nvim"; };
-      init = { defaultBranch = "main"; };
+      push = {autoSetupRemote = true;};
+      core = {editor = "nvim";};
+      init = {defaultBranch = "main";};
     };
   };
 
@@ -44,12 +45,12 @@
   };
 
   xdg.mimeApps.defaultApplications = {
-    "text/plain" = [ "neovide.desktop" ];
-    "application/pdf" = [ "zathura.desktop" ];
-    "image/*" = [ "sxiv.desktop" ];
-    "video/png" = [ "mpv.desktop" ];
-    "video/jpg" = [ "mpv.desktop" ];
-    "video/*" = [ "mpv.desktop" ];
+    "text/plain" = ["neovide.desktop"];
+    "application/pdf" = ["zathura.desktop"];
+    "image/*" = ["sxiv.desktop"];
+    "video/png" = ["mpv.desktop"];
+    "video/jpg" = ["mpv.desktop"];
+    "video/*" = ["mpv.desktop"];
   };
 
   programs.zsh = {
@@ -71,22 +72,22 @@
     };
 
     initExtra = ''
-    bindkey -s ^f "tmux-sessionizer\n"
+      bindkey -s ^f "tmux-sessionizer\n"
     '';
   };
 
   programs.tmux = {
     enable = true;
     baseIndex = 1;
-    
+
     plugins = with pkgs.tmuxPlugins; [
       sensible
       power-theme
     ];
 
     extraConfig = ''
-    set-option -g status-position top
-    bind C-f run-shell "tmux neww tmux-sessionizer"
+      set-option -g status-position top
+      bind C-f run-shell "tmux neww tmux-sessionizer"
     '';
   };
 

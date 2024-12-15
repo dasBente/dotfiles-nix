@@ -1,7 +1,10 @@
-{ pkgs, inputs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -11,14 +14,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = { dasbente = import ../../../home-manager/home.nix; };
+    extraSpecialArgs = {inherit inputs;};
+    users = {dasbente = import ../../../home-manager/home.nix;};
   };
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   time.timeZone = "Europe/Berlin";
 
@@ -64,7 +67,7 @@
   console.keyMap = "de";
 
   services.printing.enable = true;
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = ["/share/zsh"];
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -78,7 +81,7 @@
   users.users.dasbente = {
     isNormalUser = true;
     description = "Tobias Möhring";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
   };
 
@@ -88,7 +91,7 @@
   nixpkgs.config.allowUnfree = true;
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   environment.systemPackages = with pkgs; [
     pkgs.home-manager
@@ -103,7 +106,7 @@
     rofi-wayland
 
     (waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     }))
   ];
 
