@@ -15,5 +15,5 @@ sudo nixos-rebuild switch --flake .#default \
 	(cat nixos-switch.log | grep --color error && false)
 
 gen=$(nixos-rebuild list-generations | grep current)
-git commit -am "build: $gen"
+git commit -am "rebuild: $gen $*"
 popd
