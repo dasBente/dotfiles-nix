@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+#
+# rebuilds default flake in dotfiles and prints errors in a readable way.
+# rebuild [commit msg]
+#
+# source: https://www.youtube.com/watch?v=CwfKlX3rA6E
 
 set -e
 pushd ~/dotfiles
