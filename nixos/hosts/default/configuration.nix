@@ -9,6 +9,12 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override {
+      enableHybridCodec = true;
+    };
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -49,13 +55,42 @@
     xwayland.enable = true;
   };
 
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
+  environment = {
+    sessionVariables = {
+      WLR_NO_HARDWARE_CURSORS = "1";
+      NIXOS_OZONE_WL = "1";
+      LIBVA_DRIVER_NAME = "iHD";
+    };
+    pathsToLink = ["/share/zsh"];
+
+    systemPackages = with pkgs; [
+      pkgs.home-manager
+      lf
+      kitty
+      git
+      networkmanagerapplet
+      firefox-wayland
+
+      # hyprland packages
+      swww
+      dunst
+      rofi-wayland
+
+      (waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+      }))
+    ];
   };
 
   hardware = {
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        intel-vaapi-driver
+        libvdpau-va-gl
+      ];
+    };
     nvidia.modesetting.enable = true;
   };
 
@@ -67,7 +102,6 @@
   console.keyMap = "de";
 
   services.printing.enable = true;
-  environment.pathsToLink = ["/share/zsh"];
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -92,24 +126,6 @@
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
-
-  environment.systemPackages = with pkgs; [
-    pkgs.home-manager
-    lf
-    kitty
-    git
-    networkmanagerapplet
-    firefox-wayland
-
-    # hyprland packages
-    swww
-    dunst
-    rofi-wayland
-
-    (waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    }))
-  ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.roboto-mono
