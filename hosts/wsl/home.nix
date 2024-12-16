@@ -14,6 +14,7 @@
   };
 
   home.sessionVariables = {
+    FLAKE_NAME = "nixos";
   };
 
   programs.git = {

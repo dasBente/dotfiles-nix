@@ -11,7 +11,7 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    FLAKE_NAME = "default";
   };
 
   programs.git = {
