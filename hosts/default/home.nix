@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ../../../home-manager/common.nix
+    ../../home-manager/common.nix
   ];
 
   home.username = "dasbente";
@@ -34,7 +34,4 @@
     "video/jpg" = ["mpv.desktop"];
     "video/*" = ["mpv.desktop"];
   };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }

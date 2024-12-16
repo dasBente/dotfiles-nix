@@ -33,7 +33,7 @@
         specialArgs = {inherit inputs system;};
 
         modules = [
-          ./nixos/hosts/default/configuration.nix
+          ./hosts/default/configuration.nix
         ];
       };
 
@@ -48,20 +48,20 @@
             system.stateVersion = "24.05";
             wsl.enable = true;
           }
-          ./nixos/hosts/wsl/configuration.nix
+          ./hosts/wsl/configuration.nix
         ];
       };
     };
 
     homeConfiguration."dasbente" = inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [./nixos/hosts/default/home.nix];
+      modules = [./hosts/default/home.nix];
       extraSpecialArgs = {inherit inputs;};
     };
 
     homeConfiguration."nixos" = inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [./nixos/hosts/wsl/home.nix];
+      modules = [./hosts/wsl/home.nix];
       extraSpecialArgs = {inherit inputs;};
     };
   };
