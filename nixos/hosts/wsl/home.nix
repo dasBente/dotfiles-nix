@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ../../../home-manager/nvim/config.nix
+    ../../../home-manager/common.nix
   ];
 
   home.username = "nixos";

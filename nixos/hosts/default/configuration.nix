@@ -21,7 +21,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
-    users = {dasbente = import ../../../home-manager/home.nix;};
+    users = {dasbente = import ./home.nix;};
   };
 
   networking.hostName = "nixos"; # Define your hostname.

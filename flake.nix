@@ -55,7 +55,7 @@
 
     homeConfiguration."dasbente" = inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [./home-manager/home.nix];
+      modules = [./nixos/hosts/default/home.nix];
       extraSpecialArgs = {inherit inputs;};
     };
 

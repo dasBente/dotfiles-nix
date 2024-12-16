@@ -3,10 +3,6 @@
     ./nvim/config.nix
   ];
 
-  home.username = "dasbente";
-  home.homeDirectory = "/home/dasbente";
-  home.stateVersion = "24.11"; # do not touch unless necessary!
-
   home.packages = with pkgs; let
     loadBin = cmd: file: (
       writeShellScriptBin "${cmd}" (builtins.readFile "${file}")
@@ -28,29 +24,11 @@
 
   programs.git = {
     enable = true;
-    userName = "dasBente";
-    userEmail = "dasbente@gmail.com";
     extraConfig = {
       push = {autoSetupRemote = true;};
       core = {editor = "nvim";};
       init = {defaultBranch = "main";};
     };
-  };
-
-  gtk = {
-    enable = true;
-    theme.name = "adw-gtk3";
-    cursorTheme.name = "Bibata-Modern-Ice";
-    iconTheme.name = "GruvboxPlus";
-  };
-
-  xdg.mimeApps.defaultApplications = {
-    "text/plain" = ["neovide.desktop"];
-    "application/pdf" = ["zathura.desktop"];
-    "image/*" = ["sxiv.desktop"];
-    "video/png" = ["mpv.desktop"];
-    "video/jpg" = ["mpv.desktop"];
-    "video/*" = ["mpv.desktop"];
   };
 
   programs.zsh = {
