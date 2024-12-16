@@ -15,4 +15,9 @@
 
   home.sessionVariables = {
   };
+
+  programs.git = {
+    userName = "dasBente";
+    userEmail = "dasbente@gmail.com";
+  };
 }
