@@ -1,14 +1,18 @@
-{ config, lib, pkgs, inputs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
-#    <nixos-wsl/modules>
+    #    <nixos-wsl/modules>
     inputs.home-manager.nixosModules.home-manager
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = { nixos = import ./home.nix; };
+    extraSpecialArgs = {inherit inputs;};
+    users = {nixos = import ./home.nix;};
   };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
