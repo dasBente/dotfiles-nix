@@ -7,6 +7,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
+    ../common.nix
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -61,6 +62,7 @@
       NIXOS_OZONE_WL = "1";
       LIBVA_DRIVER_NAME = "iHD";
     };
+
     pathsToLink = ["/share/zsh"];
 
     systemPackages = with pkgs; [
@@ -121,7 +123,6 @@
   };
 
   programs.firefox.enable = true;
-  programs.zsh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 

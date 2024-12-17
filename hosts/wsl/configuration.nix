@@ -6,6 +6,7 @@
   imports = [
     #    <nixos-wsl/modules>
     inputs.home-manager.nixosModules.home-manager
+    ../common.nix
   ];
 
   home-manager = {
@@ -23,6 +24,7 @@
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
   };
+
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
