@@ -3,6 +3,7 @@
     ./nvim/config.nix
     ./tmux.nix
     ./zsh.nix
+    ./lf/config.nix
   ];
 
   home.packages = with pkgs; let

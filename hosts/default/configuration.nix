@@ -47,9 +47,7 @@
   };
 
   services.xserver.enable = true;
-
-  services.xserver.displayManager.lightdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 
   programs.hyprland = {
     enable = true;
@@ -67,7 +65,6 @@
 
     systemPackages = with pkgs; [
       pkgs.home-manager
-      lf
       kitty
       git
       networkmanagerapplet
