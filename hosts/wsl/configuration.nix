@@ -25,7 +25,6 @@
     shell = pkgs.zsh;
   };
 
-
   wsl.enable = true;
   wsl.defaultUser = "nixos";
 

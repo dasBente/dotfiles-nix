@@ -28,6 +28,7 @@
     enable = true;
     extraConfig = {
       push = {autoSetupRemote = true;};
+      pull = {rebase = true;};
       core = {editor = "nvim";};
       init = {defaultBranch = "main";};
     };
