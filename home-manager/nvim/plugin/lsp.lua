@@ -81,3 +81,5 @@ require("lspconfig").lua_ls.setup {
 require("lspconfig").bashls.setup {
 	filetypes = { "bash", "sh", "zsh" },
 }
+
+require("lspconfig").ts_ls.setup {}
