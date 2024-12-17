@@ -34,15 +34,6 @@ local on_attach = function (_, bufnr)
 	bufmap("n", "<leader>vi", builtin.lsp_incoming_calls, "Incoming Calls")
 	bufmap("n", "<leader>vo", builtin.lsp_outgoing_calls, "Outgoing Calls")
 
-	-- local remap = function (mode, key, fn, desc)
-	-- 	vim.keymap.set(mode, key, fn, { desc = desc })
-	-- end
-	--
-	-- remap("n", "<leader>ff", builtin.find_files, "Find file")
-	-- remap("n", "<leader>fg", builtin.live_grep, "Live grep")
-	-- remap("n", "<leader>fb", builtin.buffers, "Find in buffers")
-	-- remap("n", "<leader>fh", builtin.help_tags, "Search help")
-
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function (_)
 		vim.lsp.buf.format()
 	end, {})
@@ -85,4 +76,8 @@ require("lspconfig").lua_ls.setup {
 			diagnostics = { globals = { "vim" } },
 		},
 	},
+}
+
+require("lspconfig").bashls.setup {
+	filetypes = { "bash", "sh", "zsh" },
 }
