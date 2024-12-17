@@ -57,7 +57,6 @@
   environment = {
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
-      NIXOS_OZONE_WL = "1";
       LIBVA_DRIVER_NAME = "iHD";
     };
 
@@ -65,7 +64,6 @@
 
     systemPackages = with pkgs; [
       pkgs.home-manager
-      kitty
       git
       networkmanagerapplet
       firefox-wayland
@@ -73,7 +71,6 @@
 
       # hyprland packages
       swww
-      dunst
       rofi-wayland
 
       (waybar.overrideAttrs (oldAttrs: {

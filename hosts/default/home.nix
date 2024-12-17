@@ -1,6 +1,8 @@
 {...}: {
   imports = [
     ../../home-manager/common.nix
+    ../../home-manager/hyprland/config.nix
+    ../../home-manager/kitty.nix
   ];
 
   home.username = "dasbente";
