@@ -1,4 +1,10 @@
-{...}: {
+{ ...}: 
+
+{
+  imports = [
+    ./waybar/config.nix
+  ];
+
   services.dunst.enable = true;
 
   home = {
@@ -7,7 +13,8 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-
-    extraConfig = builtins.readFile ./hyprland.conf;
+    extraConfig = ''
+      ${builtins.readFile ./hyprland.conf}
+    '';
   };
 }
