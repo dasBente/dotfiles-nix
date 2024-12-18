@@ -11,9 +11,6 @@
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
-    intel-vaapi-driver = pkgs.intel-vaapi-driver.override {
-      enableHybridCodec = true;
-    };
   };
 
   # Bootloader.
@@ -25,7 +22,7 @@
     users = {dasbente = import ./home.nix;};
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "lenovo-x1"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -85,7 +82,6 @@
       enable = true;
       extraPackages = with pkgs; [
         intel-media-driver
-        intel-vaapi-driver
         libvdpau-va-gl
       ];
     };

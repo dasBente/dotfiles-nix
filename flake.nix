@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -20,6 +21,7 @@
     self,
     nixpkgs,
     nixos-wsl,
+    nixos-hardware,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -31,9 +33,9 @@
     nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs system;};
-
         modules = [
           ./hosts/default/configuration.nix
+          nixos-hardware.nixosModules.lenovo-thinkpad-x1-extreme
         ];
       };
 
