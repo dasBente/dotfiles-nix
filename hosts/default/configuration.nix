@@ -68,6 +68,7 @@
       networkmanagerapplet
       firefox-wayland
       discord-ptb
+      steam-run
 
       # hyprland packages
       swww
