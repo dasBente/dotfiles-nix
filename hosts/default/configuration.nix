@@ -43,8 +43,30 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+      xkb = {
+        layout = "de";
+        variant = "";
+      };
+    };
+
+    logind = {
+      extraConfig = "HandlePowerKey=suspend";
+      lidSwitch = "suspend";
+    };
+
+    printing.enable = true;
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+  };
 
   programs.hyprland = {
     enable = true;
@@ -88,23 +110,10 @@
     nvidia.modesetting.enable = true;
   };
 
-  services.xserver.xkb = {
-    layout = "de";
-    variant = "";
-  };
-
   console.keyMap = "de";
-
-  services.printing.enable = true;
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   users.users.dasbente = {
     isNormalUser = true;
