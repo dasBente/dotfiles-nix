@@ -21,7 +21,7 @@
   users.users.nixos = {
     isNormalUser = true;
     description = "Tobias Möhring";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     shell = pkgs.zsh;
   };
 
@@ -29,4 +29,6 @@
   wsl.defaultUser = "nixos";
 
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  virtualisation.docker.enable = true;
 }
