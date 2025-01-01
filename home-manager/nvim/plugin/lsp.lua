@@ -85,3 +85,4 @@ require("lspconfig").bashls.setup {
 require("lspconfig").ts_ls.setup {}
 
 require("lspconfig").rust_analyzer.setup {}
+require("lspconfig").pyright.setup {}
