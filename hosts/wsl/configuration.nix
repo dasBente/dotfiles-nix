@@ -31,13 +31,13 @@
     docker-desktop.enable = true;
 
     extraBin = with pkgs; [
-      { src = "${coreutils}/bin/mkdir"; }
-      { src = "${coreutils}/bin/cat"; }
-      { src = "${coreutils}/bin/whoami"; }
-      { src = "${coreutils}/bin/ls"; }
-      { src = "${busybox}/bin/addgroup"; }
-      { src = "${su}/bin/groupadd"; }
-      { src = "${su}/bin/usermod"; }
+      {src = "${coreutils}/bin/mkdir";}
+      {src = "${coreutils}/bin/cat";}
+      {src = "${coreutils}/bin/whoami";}
+      {src = "${coreutils}/bin/ls";}
+      {src = "${busybox}/bin/addgroup";}
+      {src = "${su}/bin/groupadd";}
+      {src = "${su}/bin/usermod";}
     ];
   };
 
