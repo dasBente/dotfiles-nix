@@ -145,7 +145,8 @@
         "monokai-pro-nvim": "monokai-pro-nvim",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "vim-renpy": "vim-renpy"
       }
     },
     "systems": {
@@ -160,6 +161,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "vim-renpy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1424989068,
+        "narHash": "sha256-ZF8aQ7IxGV7Y2ssnvD+k+BKNhMumq8gUDEL/gZMGDEY=",
+        "owner": "chaimleib",
+        "repo": "vim-renpy",
+        "rev": "3434523ae70818573f5e24045547ea302eab4437",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chaimleib",
+        "repo": "vim-renpy",
         "type": "github"
       }
     }

@@ -15,6 +15,11 @@
       url = "github:loctvl842/monokai-pro.nvim";
       flake = false;
     };
+
+    vim-renpy = {
+      url = "github:chaimleib/vim-renpy";
+      flake = false;
+    };
   };
 
   outputs = {

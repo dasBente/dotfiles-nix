@@ -13,6 +13,11 @@
               name = "monokai-pro";
               src = inputs.monokai-pro-nvim;
             };
+            
+            vim-renpy = prev.vimUtils.buildVimPlugin {
+              name = "vim-renpy";
+              src = inputs.vim-renpy;
+            };
           };
       })
     ];
@@ -66,6 +71,8 @@
         plugin = monokai-pro-nvim;
         config = toLuaFile ./plugin/monokai.lua;
       }
+
+      vim-renpy
 
       # cmp and plugins
       cmp-nvim-lsp
