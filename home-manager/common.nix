@@ -26,6 +26,7 @@
   };
 
   programs.git = {
+    lfs.enable = true;
     enable = true;
     extraConfig = {
       push = {autoSetupRemote = true;};
