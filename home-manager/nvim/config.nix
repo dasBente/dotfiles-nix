@@ -62,6 +62,7 @@
         config = toLuaFile ./plugin/which-key.lua;
       }
 
+      
       {
         plugin = comment-nvim;
         config = toLua "require(\"Comment\").setup()";
@@ -88,6 +89,11 @@
       {
         plugin = nvim-lspconfig;
         config = toLuaFile ./plugin/lsp.lua;
+      }
+
+      {
+        plugin = oil-nvim;
+        config = toLuaFile ./plugin/oil.lua;
       }
 
       # telescope
