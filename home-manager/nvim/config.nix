@@ -13,7 +13,7 @@
               name = "monokai-pro";
               src = inputs.monokai-pro-nvim;
             };
-            
+
             vim-renpy = prev.vimUtils.buildVimPlugin {
               name = "vim-renpy";
               src = inputs.vim-renpy;
