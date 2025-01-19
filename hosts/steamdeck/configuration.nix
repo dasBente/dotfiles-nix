@@ -2,16 +2,15 @@
   pkgs,
   inputs,
   ...
-}: {
+}: 
+let
+  jovian-nixos = builtins.fetchGit {
+    url = "https://github.com/Jovian-Experiments/Jovian-NixOS";
+    ref = "development";
+  };
+in {
   imports = [
-    (
-      let revision = "27a0ddac1a14e10ba98530f59db728951495f2ce"; in
-      builtins.fetchTarball
-      {
-        url = "https://github.com/Jovian-Experiments/Jovian-NixOS/archive/${revision}.tar.gz";
-        sha = "sha256:0mkhkn7gaiig0nxxdckks6b0l9mdfvj7imcx5g13b6jc3qf550am";
-      } ++ "/modules"
-    )
+    "${jovian-nixos}/modules"
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
   ];
