@@ -58,6 +58,13 @@
           ./hosts/wsl/configuration.nix
         ];
       };
+
+      steamdeck = nixpkgs.lib.nixosSystem {
+	specialArgs = {inherit inputs system;};
+	modules = [
+	  ./hosts/steamdeck/configuration.nix
+	];
+      };
     };
 
     homeConfiguration."dasbente" = inputs.home-manager.lib.homeManagerConfiguration {
