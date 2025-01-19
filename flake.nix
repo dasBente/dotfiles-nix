@@ -20,6 +20,11 @@
       url = "github:chaimleib/vim-renpy";
       flake = false;
     };
+
+    jovian-nixos = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -60,10 +65,10 @@
       };
 
       steamdeck = nixpkgs.lib.nixosSystem {
-	specialArgs = {inherit inputs system;};
-	modules = [
-	  ./hosts/steamdeck/configuration.nix
-	];
+        specialArgs = {inherit inputs system;};
+        modules = [
+          ./hosts/steamdeck/configuration.nix
+        ];
       };
     };
 

@@ -3,14 +3,9 @@
   inputs,
   ...
 }: 
-let
-  jovian-nixos = builtins.fetchGit {
-    url = "https://github.com/Jovian-Experiments/Jovian-NixOS";
-    ref = "development";
-  };
-in {
+{
   imports = [
-    "${jovian-nixos}/modules"
+    "${inputs.jovian-nixos}/modules"
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
   ];
