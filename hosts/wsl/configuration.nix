@@ -14,6 +14,8 @@
     users = {nixos = import ./home.nix;};
   };
 
+  networking.hostName = "wsl";
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   programs.zsh.enable = true;

@@ -62,7 +62,6 @@
         config = toLuaFile ./plugin/which-key.lua;
       }
 
-      
       {
         plugin = comment-nvim;
         config = toLua "require(\"Comment\").setup()";
