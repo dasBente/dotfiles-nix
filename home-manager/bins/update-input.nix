@@ -1,5 +1,6 @@
 { pkgs, ... }:
 
+# https://github.com/vimjoyer/nix-update-input
 pkgs.writeShellScriptBin "update-input" ''
 input=$( \
   nix flake metadata --json \
