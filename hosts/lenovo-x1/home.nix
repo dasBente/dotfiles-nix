@@ -14,10 +14,6 @@
     FLAKE_NAME = "default";
   };
 
-  programs.git = {
-    userName = "dasBente";
-    userEmail = "dasbente@gmail.com";
-  };
 
   gtk = {
     enable = true;

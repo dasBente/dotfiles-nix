@@ -6,7 +6,10 @@
     ./lf/config.nix
   ];
 
+  home.stateVersion = "24.11"; # do not touch unless necessary!
+
   home.packages = import ./bins/default.nix {inherit pkgs;};
+
   home.file = {
   };
 
@@ -15,14 +18,18 @@
   };
 
   programs.git = {
-    lfs.enable = true;
     enable = true;
+    lfs.enable = true;
+
     extraConfig = {
       push = {autoSetupRemote = true;};
       pull = {rebase = true;};
       core = {editor = "nvim";};
       init = {defaultBranch = "main";};
     };
+
+    userName = "dasBente";
+    userEmail = "dasbente@gmail.com";
   };
 
   # Let Home Manager install and manage itself.
