@@ -10,11 +10,6 @@
   home.file = {
   };
 
-  home.sessionVariables = {
-    FLAKE_NAME = "default";
-  };
-
-
   gtk = {
     enable = true;
     theme.name = "adw-gtk3";
