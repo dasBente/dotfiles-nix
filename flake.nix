@@ -14,15 +14,15 @@
     };
   in {
     nixosConfigurations = {
-      default = nixpkgs.lib.nixosSystem {
+      lenovo-x1 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs system;};
         modules = [
-          ./hosts/default/configuration.nix
+          ./hosts/lenovo-x1/configuration.nix
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-extreme
         ];
       };
 
-      nixos = nixpkgs.lib.nixosSystem {
+      nixos-wsl = nixpkgs.lib.nixosSystem {
         system = system;
 
         specialArgs = {inherit inputs system;};
@@ -33,7 +33,7 @@
             system.stateVersion = "24.05";
             wsl.enable = true;
           }
-          ./hosts/wsl/configuration.nix
+          ./hosts/nixos-wsl/configuration.nix
         ];
       };
     };

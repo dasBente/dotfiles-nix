@@ -11,7 +11,7 @@ pkgs.writeShellScriptBin "rebuild" ''
 
   echo "NixOS Rebuilding..."
 
-  sudo nixos-rebuild switch --flake &> nixos.switch.log || \
+  sudo nixos-rebuild switch --flake .# &> nixos.switch.log || \
   	(cat nixos.switch.log | grep --color error && false)
 
   gen=$(nixos-rebuild list-generations | grep current)

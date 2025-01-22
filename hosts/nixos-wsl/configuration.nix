@@ -14,7 +14,7 @@
     users = {nixos = import ./home.nix;};
   };
 
-  networking.hostName = "wsl";
+  networking.hostName = "nixos-wsl";
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
