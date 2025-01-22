@@ -17,6 +17,7 @@
       };
 
       nixos-wsl = nixpkgs.lib.nixosSystem {
+        system = system;
         specialArgs = {inherit inputs system;};
         modules = [
           inputs.nixos-wsl.nixosModules.default
