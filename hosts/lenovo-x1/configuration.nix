@@ -17,11 +17,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    users = {dasbente = import ./home.nix;};
-  };
-
   networking.hostName = "lenovo-x1"; # Define your hostname.
   networking.networkmanager.enable = true;
 

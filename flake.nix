@@ -1,6 +1,4 @@
 {
-  description = "Default NixOS setup";
-
   outputs = {
     self,
     nixpkgs,
@@ -8,46 +6,25 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {allowUnfree = true;};
-    };
+    user = "dasbente";
+    hostname = "lenovo-x1";
   in {
     nixosConfigurations = {
-      lenovo-x1 = nixpkgs.lib.nixosSystem {
+      "${hostname}" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs system;};
         modules = [
-          ./hosts/lenovo-x1/configuration.nix
+          ./hosts/${hostname}/configuration.nix
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-extreme
-        ];
-      };
-
-      nixos-wsl = nixpkgs.lib.nixosSystem {
-        system = system;
-
-        specialArgs = {inherit inputs system;};
-
-        modules = [
-          inputs.nixos-wsl.nixosModules.default
+          home-manager.nixosModules.home-manager
           {
-            system.stateVersion = "24.05";
-            wsl.enable = true;
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users."${user}" =
+              import ./hosts/${hostname}/home-${user}.nix;
           }
-          ./hosts/nixos-wsl/configuration.nix
         ];
       };
-    };
-
-    homeConfiguration."dasbente" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [./hosts/default/home.nix];
-      extraSpecialArgs = {inherit inputs;};
-    };
-
-    homeConfiguration."nixos" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [./hosts/wsl/home.nix];
-      extraSpecialArgs = {inherit inputs;};
     };
   };
 

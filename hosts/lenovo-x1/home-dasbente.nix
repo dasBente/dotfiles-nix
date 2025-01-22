@@ -5,8 +5,6 @@
     ../../home-manager/kitty/config.nix
   ];
 
-  home.username = "dasbente";
-  home.homeDirectory = "/home/dasbente";
   home.stateVersion = "24.11"; # do not touch unless necessary!
 
   home.file = {

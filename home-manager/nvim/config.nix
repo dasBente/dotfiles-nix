@@ -72,7 +72,7 @@
         config = toLuaFile ./plugin/monokai.lua;
       }
 
-      vim-renpy
+      # vim-renpy # TODO: fix
 
       # cmp and plugins
       cmp-nvim-lsp
