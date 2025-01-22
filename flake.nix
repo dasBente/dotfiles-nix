@@ -6,23 +6,25 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    user = "dasbente";
-    hostname = "lenovo-x1";
   in {
     nixosConfigurations = {
-      "${hostname}" = nixpkgs.lib.nixosSystem {
+      lenovo-x1 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs system;};
         modules = [
-          ./hosts/${hostname}/configuration.nix
+          ./hosts/lenovo-x1/configuration.nix
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-extreme
-          home-manager.nixosModules.home-manager
+        ];
+      };
+
+      nixos-wsl = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system;};
+        modules = [
+          inputs.nixos-wsl.nixosModules.default
           {
-            home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users."${user}" =
-              import ./hosts/${hostname}/home-${user}.nix;
+            system.stateVersion = "24.05";
+            wsl.enable = true;
           }
+          ./hosts/nixos-wsl/configuration.nix
         ];
       };
     };

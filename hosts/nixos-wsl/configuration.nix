@@ -4,14 +4,15 @@
   ...
 }: {
   imports = [
-    #    <nixos-wsl/modules>
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
   ];
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
-    users = {nixos = import ./home.nix;};
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.nixos = import ./home.nix;
   };
 
   networking.hostName = "nixos-wsl";

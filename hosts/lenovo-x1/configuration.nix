@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
@@ -19,6 +18,13 @@
 
   networking.hostName = "lenovo-x1"; # Define your hostname.
   networking.networkmanager.enable = true;
+
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.dasbente = import ./home.nix;
+  };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
