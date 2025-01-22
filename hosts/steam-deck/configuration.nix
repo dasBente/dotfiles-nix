@@ -18,6 +18,7 @@ in {
 
   jovian = {
     steam.enable = true;
+    steam.autoStart = true;
     devices.steamdeck.enable = true;
   };
 
