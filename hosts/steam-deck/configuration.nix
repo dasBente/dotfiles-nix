@@ -5,8 +5,8 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../common.nix
     inputs.home-manager.nixosModules.home-manager
+    ../common.nix
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -16,7 +16,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "lenovo-x1"; # Define your hostname.
+  networking.hostName = "steam-deck"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   home-manager.users.dasbente = import ./home.nix;
@@ -77,17 +77,7 @@
     ];
   };
 
-  hardware = {
-    graphics = {
-      enable = true;
-      extraPackages = with pkgs; [
-        intel-media-driver
-        libvdpau-va-gl
-      ];
-    };
-    nvidia.modesetting.enable = true;
-  };
-
+  hardware.graphics.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -107,4 +97,6 @@
   fonts.packages = with pkgs; [
     nerd-fonts.roboto-mono
   ];
+
+  system.stateVersion = "24.11"; # Did you read the comment?
 }

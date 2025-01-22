@@ -9,15 +9,10 @@
   ];
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    useGlobalPkgs = true;
-    useUserPackages = true;
     users.nixos = import ./home.nix;
   };
 
   networking.hostName = "nixos-wsl";
-
-  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   users.users.nixos = {
     isNormalUser = true;
@@ -41,8 +36,6 @@
       {src = "${su}/bin/usermod";}
     ];
   };
-
-  system.stateVersion = "24.05"; # Did you read the comment?
 
   virtualisation.docker = {
     enable = true;
