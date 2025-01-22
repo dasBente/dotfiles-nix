@@ -2,38 +2,36 @@
   pkgs,
   inputs,
   ...
-}: {
+}: 
+let
+  mainUser = "dasbente";
+in {
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
+    inputs.jovian.nixosModules.jovian
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
   };
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "steam-deck"; # Define your hostname.
-  networking.networkmanager.enable = true;
-
-  home-manager.users.dasbente = import ./home.nix;
+  jovian = {
+    steam.enable = true;
+    devices.steamdeck.enable = true;
+  };
 
   services = {
-    xserver = {
-      enable = true;
-      displayManager.gdm.enable = true;
-      xkb = {
-        layout = "de";
-        variant = "";
-      };
+    xserver.displayManager = {
+      gdm.wayland.enable = true;
+      defaultSession = "steam-wayland";
+      autoLogin.enable = true;
+      autoLogin.user = mainUser;
     };
 
-    logind = {
-      extraConfig = "HandlePowerKey=suspend";
-      lidSwitch = "suspend";
+    xserver.xkb = {
+      layout = "de";
+      variant = "";
     };
 
     printing.enable = true;
@@ -46,17 +44,65 @@
     };
   };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
+  sound.enable = true;
+
+  services.xserver.displayManager.gnome.enable = true;
+
+  networking.hostName = "steam-deck"; # Define your hostname.
+  networking.networkmanager.enable = true;
+
+  home-manager.users."${mainUser}" = import ./home.nix;
+
+  systemd.services.gamescope-switcher = {
+    wantedBy = [ "graphical.target" ];
+    servicesConfig = {
+      User = 1000;
+      PAMName = "login";
+      WorkingDirectory = "~";
+
+      TTYPath = "/dev/tty7";
+      TTYReset = "yes";
+      TTYHangup = "yes";
+      TTYVTDisallocate = "yes";
+
+      StandardInput = "tty-fail";
+      StandardOutput = "journal";
+      StandardError = "journal";
+
+      UtmpIdentifier = "tty7";
+      UtmpMode = "user";
+
+      Restart = "always";
+    };
+
+    script = ''
+    set-session () {
+      mkdir -p ~/.local/state
+      >~/.local/state/steamos-session-select echo "$1"
+    }
+    consume-session () {
+      if [[ -e ~/.local/state/steamos-session-select ]]; then
+        cat ~/.local/state/steamos-session-select
+        rm ~/.local/state/steamos-session-select
+      else
+        echo "gamescope"
+      fi
+    }
+    while :; do
+      session=$(consume-session)
+      case "$session" in
+        plasma)
+          dbus-run-session -- gnome-shell --display-server --wayland
+          ;;
+        gamescope)
+          steam-session
+          ;;
+      esac
+    done
+    '';
   };
 
   environment = {
-    sessionVariables = {
-      WLR_NO_HARDWARE_CURSORS = "1";
-      LIBVA_DRIVER_NAME = "iHD";
-    };
-
     pathsToLink = ["/share/zsh"];
 
     systemPackages = with pkgs; [
@@ -65,7 +111,10 @@
       networkmanagerapplet
       firefox-wayland
       discord-ptb
-      steam-run
+
+      # steamdeck
+      jupiter-dock-updater-bin
+      steamdeck-firmware
 
       # hyprland packages
       swww
@@ -77,8 +126,6 @@
     ];
   };
 
-  hardware.graphics.enable = true;
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   users.users.dasbente = {
@@ -89,14 +136,8 @@
   };
 
   programs.firefox.enable = true;
-  programs.steam.enable = true;
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   fonts.packages = with pkgs; [
     nerd-fonts.roboto-mono
   ];
-
-  system.stateVersion = "24.11"; # Did you read the comment?
 }

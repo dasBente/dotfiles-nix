@@ -28,6 +28,13 @@
           ./hosts/nixos-wsl/configuration.nix
         ];
       };
+
+      steam-deck = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system;};
+        modules = [
+          ./hosts/steam-deck/configuration.nix
+        ];
+      };
     };
   };
 
@@ -48,6 +55,11 @@
 
     vim-renpy = {
       url = "github:chaimleib/vim-renpy";
+      flake = false;
+    };
+
+    jovian = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
       flake = false;
     };
   };
