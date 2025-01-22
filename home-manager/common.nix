@@ -6,7 +6,7 @@
     ./lf/config.nix
   ];
 
-  home.packages = import ./bins/default.nix { inherit pkgs; }; 
+  home.packages = import ./bins/default.nix {inherit pkgs;};
   home.file = {
   };
 
