@@ -18,6 +18,7 @@
       } + "/modules")
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
+    ../../modules/hsr.nix
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
