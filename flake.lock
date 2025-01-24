@@ -36,22 +36,6 @@
         "type": "github"
       }
     },
-    "jovian-nixos": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1737617533,
-        "narHash": "sha256-9hHaUxeRDZ5PTk7TqBbHPAjgKuBl67asaMdyehYLqFs=",
-        "owner": "Jovian-Experiments",
-        "repo": "Jovian-NixOS",
-        "rev": "2dd65c3c92a4b8b1bf653657ae8648b883a4d427",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Jovian-Experiments",
-        "repo": "Jovian-NixOS",
-        "type": "github"
-      }
-    },
     "monokai-pro-nvim": {
       "flake": false,
       "locked": {
@@ -139,7 +123,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "jovian-nixos": "jovian-nixos",
         "monokai-pro-nvim": "monokai-pro-nvim",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",

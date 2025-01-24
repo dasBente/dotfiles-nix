@@ -56,10 +56,5 @@
       url = "github:chaimleib/vim-renpy";
       flake = false;
     };
-
-    jovian-nixos = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-      flake = false;
-    };
   };
 }

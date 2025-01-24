@@ -2,7 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}: 
+{
   imports = [
     ./hardware-configuration.nix
     (
@@ -29,7 +30,15 @@
   networking.hostName = "steam-deck"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  jovian.devices.steamdeck.enable = true;
+  jovian = {
+    steam = {
+      enable = true;
+      autoStart = true;
+      desktopSession = "gnome";
+      user = "dasbente";
+    };
+    devices.steamdeck.enable = true;
+  };
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
@@ -59,7 +68,7 @@
   services = {
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
+      # displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
       xkb = {
         layout = "de";
