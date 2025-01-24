@@ -2,7 +2,6 @@
   outputs = {
     self,
     nixpkgs,
-    home-manager,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -28,6 +27,13 @@
           ./hosts/nixos-wsl/configuration.nix
         ];
       };
+
+      steam-deck = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system;};
+        modules = [
+          ./hosts/steam-deck/configuration.nix
+        ];
+      };
     };
   };
 
@@ -48,6 +54,11 @@
 
     vim-renpy = {
       url = "github:chaimleib/vim-renpy";
+      flake = false;
+    };
+
+    jovian-nixos = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
       flake = false;
     };
   };
