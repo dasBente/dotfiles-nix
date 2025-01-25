@@ -18,7 +18,7 @@
       } + "/modules")
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
-    ../../modules/games/default.nix
+    ../../nixosModules/games/default.nix
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {

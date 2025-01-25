@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   imports = [
+    ./default.nix
     ./nvim/config.nix
-    ./tmux.nix
-    ./zsh.nix
     ./lf/config.nix
   ];
 
@@ -16,6 +15,9 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+
+  tmux.enable = true;
+  zsh.enable = true;
 
   programs.git = {
     enable = true;

@@ -1,8 +1,8 @@
 {...}: {
   imports = [
-    ../../home-manager/common.nix
-    ../../home-manager/hyprland/config.nix
-    ../../home-manager/kitty/config.nix
+    ../../nixosModules/home-manager/common.nix
+    ../../nixosModules/home-manager/hyprland/config.nix
+    ../../nixosModules/home-manager/kitty/config.nix
   ];
 
   home.stateVersion = "24.11"; # do not touch unless necessary!
