@@ -34,9 +34,9 @@
   };
   programs.ssh.extraConfig = ''
   Host dasbente.moe
-  HostName git.dasbente.moe
-  User git
-  Port 222
+    HostName git.dasbente.moe
+    User git
+    Port 222
   '';
 
   # Let Home Manager install and manage itself.
