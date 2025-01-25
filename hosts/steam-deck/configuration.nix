@@ -18,7 +18,7 @@
       } + "/modules")
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
-    ../../modules/hsr.nix
+    ../../modules/games/default.nix
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -114,20 +114,12 @@
     ];
   };
 
-  hardware = {
-    graphics = {
-      enable = true;
-      extraPackages = with pkgs; [
-        intel-media-driver
-        libvdpau-va-gl
-      ];
-    };
-    nvidia.modesetting.enable = true;
-  };
+  honkers-railway-launcher.enable = true;
+  shipwright.enable = true;
 
   console.keyMap = "de";
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   users.users.dasbente = {
