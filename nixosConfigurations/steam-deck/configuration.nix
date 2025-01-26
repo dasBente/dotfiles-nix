@@ -13,7 +13,7 @@
         url = "https://github.com/Jovian-Experiments/Jovian-NixOS";
       in
       builtins.fetchTarball {
-        url = "${url}/archive/${rev}.tag.gz";
+        url = "${url}/archive/${rev}.tar.gz";
         sha256 = "${sha}";
       } + "/modules")
     inputs.home-manager.nixosModules.home-manager
