@@ -18,7 +18,7 @@
       } + "/modules")
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
-    ../../nixosModules/games/default.nix
+    ../../modules/games/default.nix
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -69,7 +69,6 @@
   services = {
     xserver = {
       enable = true;
-      # displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
       xkb = {
         layout = "de";
@@ -114,8 +113,8 @@
     ];
   };
 
-  honkers-railway-launcher.enable = true;
-  shipwright.enable = true;
+  games.honkers-railway-launcher.enable = true;
+  games.shipwright.enable = true;
 
   console.keyMap = "de";
 

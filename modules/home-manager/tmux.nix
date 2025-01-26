@@ -1,9 +1,9 @@
 {pkgs, config, lib, ...}: {
   options = {
-    tmux.enable = lib.mkEnableOption "Enables tmux in home-manager";
+    home.tmux.enable = lib.mkEnableOption "Enables tmux in home-manager";
   };
 
-  config = lib.mkIf config.tmux.enable {
+  config = lib.mkIf config.home.tmux.enable {
     programs.tmux = {
       enable = true;
       baseIndex = 1;

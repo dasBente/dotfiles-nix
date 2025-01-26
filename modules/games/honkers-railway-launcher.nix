@@ -12,11 +12,11 @@ in
   imports = [ aagl.module ];
 
   options = {
-    honkers-railway-launcher.enable =
+    games.honkers-railway-launcher.enable =
       lib.mkEnableOption "Enables Honkers Railway Launcher";
   };
 
-  config = lib.mkIf config.honkers-railway-launcher.enable {
+  config = lib.mkIf config.games.honkers-railway-launcher.enable {
     nix.settings = aagl.nixConfig;
     programs.honkers-railway-launcher.enable = true;
   };

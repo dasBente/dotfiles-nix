@@ -1,8 +1,7 @@
 {nixpkgs, inputs, ...}:
 let
   system = "x86_64-linux";
-in
-{
+in {
   lenovo-x1 = nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs system;};
     modules = [

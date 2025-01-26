@@ -3,11 +3,10 @@
     self,
     nixpkgs,
     ...
-  } @ inputs: let
-    system = "x86_64-linux";
-  in {
-    nixosConfigurations = import ./nixosConfigurations/default.nix
-      {inherit nixpkgs system inputs;};
+  } @ inputs:
+  {
+    nixosConfigurations = import ./hosts/default.nix
+      {inherit nixpkgs inputs;};
   };
 
   inputs = {

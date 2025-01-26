@@ -1,9 +1,9 @@
 { config, lib, ...}: {
   options = {
-    zsh.enable = lib.mkEnableOption "Enables zsh for home manager";
+    home.zsh.enable = lib.mkEnableOption "Enables zsh for home manager";
   };
 
-  config = lib.mkIf config.zsh.enable {
+  config = lib.mkIf config.home.zsh.enable {
     programs.zsh = {
       enable = true;
       autosuggestion.enable = true;
