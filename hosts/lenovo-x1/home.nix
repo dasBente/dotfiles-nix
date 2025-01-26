@@ -25,4 +25,6 @@
     "video/jpg" = ["mpv.desktop"];
     "video/*" = ["mpv.desktop"];
   };
+
+  home.kitty.enable = true;
 }
