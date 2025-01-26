@@ -2,7 +2,6 @@
   imports = [
     ./default.nix
     ./nvim/config.nix
-    ./lf/config.nix
   ];
 
   home.stateVersion = "24.11"; # do not touch unless necessary!
@@ -21,6 +20,7 @@
 
   home.tmux.enable = true;
   home.zsh.enable = true;
+  home.lf.enable = true;
 
   programs.git = {
     enable = true;
