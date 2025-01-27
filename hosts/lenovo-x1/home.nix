@@ -1,8 +1,8 @@
 {...}: {
   imports = [
-    ../../home-manager/common.nix
-    ../../home-manager/hyprland/config.nix
-    ../../home-manager/kitty/config.nix
+    ../../modules/home-manager/common.nix
+    ../../modules/home-manager/hyprland/config.nix
+    ../../modules/home-manager/default.nix
   ];
 
   home.stateVersion = "24.11"; # do not touch unless necessary!

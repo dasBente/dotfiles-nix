@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ../../home-manager/common.nix
+    ../../modules/home-manager/common.nix
   ];
 
 
