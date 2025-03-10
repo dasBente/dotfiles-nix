@@ -15,6 +15,10 @@
   nixpkgs.config.packageOverrides = pkgs: {
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+      "freeimage-unstable-2021-11-01"
+    ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -106,6 +110,7 @@
 
   games.honkers-railway-launcher.enable = true;
   games.shipwright.enable = true;
+  games.emulation-station.enable = true;
 
   console.keyMap = "de";
 
