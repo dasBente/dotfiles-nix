@@ -6,16 +6,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    (
-      let
-        sha = "sha256:0nx81cb7lwn7d2nbdsv5w0mf021wqwbailsf9r7rw3ci2x9xl4gn";
-        rev = "2dd65c3c92a4b8b1bf653657ae8648b883a4d427";
-        url = "https://github.com/Jovian-Experiments/Jovian-NixOS";
-      in
-      builtins.fetchTarball {
-        url = "${url}/archive/${rev}.tar.gz";
-        sha256 = "${sha}";
-      } + "/modules")
+    inputs.jovian-nixos.nixosModules.jovian
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
     ../../modules/games/default.nix
