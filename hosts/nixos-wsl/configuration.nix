@@ -6,6 +6,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
+    ../../modules/games/default.nix
   ];
 
   home-manager = {

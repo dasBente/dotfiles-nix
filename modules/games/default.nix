@@ -2,8 +2,9 @@
 
 {
   imports = [
-    ./honkers-railway-launcher.nix
+#    ./honkers-railway-launcher.nix
     ./shipwright.nix
     ./emulation-station.nix
+    ./steam-rom-manager.nix
   ];
 }
