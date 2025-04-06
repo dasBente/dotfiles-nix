@@ -9,7 +9,12 @@
     ../common.nix
   ];
 
-  nixpkgs.config.packageOverrides = pkgs: {
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {};
+    permittedInsecurePackages = [
+      "freeimage-unstable-2021-11-01"
+    ];
   };
 
   # Bootloader.
@@ -125,8 +130,6 @@
 
   programs.firefox.enable = true;
   programs.steam.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];

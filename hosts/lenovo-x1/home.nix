@@ -25,5 +25,7 @@
     "video/*" = ["mpv.desktop"];
   };
 
+  programs.emulation-station.enable = true;
+
   home.kitty.enable = true;
 }
