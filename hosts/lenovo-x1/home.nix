@@ -25,7 +25,10 @@
     "video/*" = ["mpv.desktop"];
   };
 
-  programs.emulation-station.enable = true;
+  programs.emulation-station = {
+    enable = true;
+    snes = true;
+  };
 
   home.kitty.enable = true;
 }

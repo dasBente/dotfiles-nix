@@ -94,6 +94,7 @@
       firefox-wayland
       discord-ptb
       steam-run
+      pcmanfm
 
       # hyprland packages
       swww
