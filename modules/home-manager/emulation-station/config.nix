@@ -2,34 +2,25 @@
 let
   cfg = config.programs.emulation-station;
 
-  mkSystem = attr: ''
+  mkSystem = system: attrs: lib.optionalString attrs.enable ''
     <system>
-      <name>${attr.system}</name>
-      <fullname>${attr.fullName}</fullname>
-      <path>${cfg.romPath}/${attr.system}</path>
-      <extension>${attr.extension}</extension>
-      <command>${attr.command}</command>
-      <platform>${attr.system}</platform>
+      <name>${system}</name>
+      <fullname>${attrs.fullName}</fullname>
+      <path>${attrs.romPath or "${cfg.romPath}/${system}"}</path>
+      <extension>${attrs.extension}</extension>
+      <command>${attrs.command}</command>
+      <platform>${attrs.system}</platform>
     </system>
   '';
 
-  systemsCfg = ''
-    <systemList>
-      ${lib.optionalString cfg.snes (mkSystem {
-        system = "snes";
-        fullName = "Super Nintendo Entertainment System";
-        extension = ".smc .sfc .SMC .SFC";
-        command = "retroarch -L ${pkgs.libretro.bsnes}/lib/retroarch/cores/bsnes_libretro.so %ROM%";
-      })}
-
-      ${lib.optionalString cfg.n64 (mkSystem {
-        system = "n64";
-        fullName = "Nintendo 64";
-        extension = ".n64 .z64 .N64 .Z64";
-        command = "retroarch -L ${pkgs.libretro.mupen64plus}/lib/retroarch/cores/mupen64plus_libretro.so %ROM%";
-      })}
-    </systemList>
-  '';
+  mkSystemCfg = systems:
+    let
+      systems = lib.attrsets.mapAttrsToList mkSystem cfg.systems;
+    in ''
+      <systemList>
+        ${lib.strings.concatLines systems}
+      </systemList>
+    '';
 in
 {
   options.programs.emulation-station = {
@@ -41,22 +32,36 @@ in
       description = "Path to the ROM file location";
     };
 
-    snes = lib.mkEnableOption "Enable SNES emulation";
-    n64 = lib.mkEnableOption "Enable N64 emulation";
+    systems = lib.mkOption {
+      type = lib.types.attrs;
+      description = "System definitions";
+
+      default = {
+        snes = {
+          fullName = "Super Nintendo Entertainment System";
+          extension = ".smc .sfc .SMC .SFC";
+          command = "retroarch -L ${pkgs.libretro.bsnes}/lib/retroarch/cores/bsnes_libretro.so %ROM%";
+        };
+        n64 = {
+          fullName = "Nintendo 64";
+          extension = ".n64 .z64 .N64 .Z64";
+          command = "retroarch -L ${pkgs.libretro.mupen64plus}/lib/retroarch/cores/mupen64plus_libretro.so %ROM%";
+        };
+        "3ds" = {
+          fullName = "Nintendo 3DS";
+          extension = ".3ds .3DS";
+          command = "retroarch -L ${pkgs.libretro.citra}/lib/retroarch/cores/citra_libretro.so %ROM%";
+        };
+      };
+    };
   };
 
-  config = lib.mkIf cfg.enable (lib.mkMerge [
-    {
-      home.packages = with pkgs; [
-        emulationstation
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      emulationstation
+      retroarch
+    ];
 
-        (retroarch.withCores (cores: with cores; [
-          bsnes mgba mupen64plus citra dolphin
-        ]))
-      ];
-    }
-    {
-      home.file.".emulationstation/es_systems.cfg".text = systemsCfg;
-    }
-  ]);
+    home.file.".emulationstation/es_systems.cfg".text = mkSystemCfg cfg.systems;
+  };
 }
