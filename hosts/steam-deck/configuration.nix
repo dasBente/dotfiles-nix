@@ -110,7 +110,6 @@
 
   games.honkers-railway-launcher.enable = true;
   games.shipwright.enable = true;
-  games.emulation-station.enable = true;
 
   console.keyMap = "de";
 

@@ -27,7 +27,12 @@
 
   programs.emulation-station = {
     enable = true;
-    snes = true;
+
+    systems = {
+      snes.enable = true;
+      n64.enable = true;
+    };
+
   };
 
   home.kitty.enable = true;
