@@ -9,6 +9,13 @@
   home.file = {
   };
 
+  programs.emulation-station.enable = true;
+  programs.emulation-station.systems = {
+    snes.enable = true;
+    n64.enable = true;
+    "3ds".enable = true;
+  };
+
   gtk = {
     enable = true;
     theme.name = "adw-gtk3";

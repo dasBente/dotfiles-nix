@@ -2,23 +2,47 @@
 let
   cfg = config.programs.emulation-station;
 
-  mkSystem = system: attrs: lib.optionalString attrs.enable ''
+  defaultSystems = {
+    snes = {
+      fullName = "Super Nintendo Entertainment System";
+      extension = ".smc .sfc .SMC .SFC";
+      command = "retroarch -L ${pkgs.libretro.bsnes}/lib/retroarch/cores/bsnes_libretro.so %ROM%";
+    };
+    n64 = {
+      fullName = "Nintendo 64";
+      extension = ".n64 .z64 .N64 .Z64";
+      command = "retroarch -L ${pkgs.libretro.mupen64plus}/lib/retroarch/cores/mupen64plus_libretro.so %ROM%";
+    };
+    "3ds" = {
+      fullName = "Nintendo 3DS";
+      extension = ".3ds .3DS";
+      command = "retroarch -L ${pkgs.libretro.citra}/lib/retroarch/cores/citra_libretro.so %ROM%";
+    };
+  };
+
+  getKeyOr = key: attrs: default:
+    if builtins.hasAttr key attrs then builtins.getAttr key attrs else default;
+
+  hasKeyString = key: attrs: str:
+    lib.optionalString (builtins.hasAttr key attrs) str;
+
+  mkSystem = system: attrs: hasKeyString "enable" attrs ''
     <system>
       <name>${system}</name>
-      <fullname>${attrs.fullName}</fullname>
-      <path>${attrs.romPath or "${cfg.romPath}/${system}"}</path>
+      ${hasKeyString "fullName" attrs "<fullname>${attrs.fullName}</fullname>"}
+      <path>${getKeyOr "romPath" attrs "${cfg.romPath}/${system}"}</path>
       <extension>${attrs.extension}</extension>
       <command>${attrs.command}</command>
-      <platform>${attrs.system}</platform>
+      <platform>${system}</platform>
     </system>
   '';
 
   mkSystemCfg = systems:
     let
-      systems = lib.attrsets.mapAttrsToList mkSystem cfg.systems;
+      asList = lib.attrsets.mapAttrsToList mkSystem systems;
     in ''
       <systemList>
-        ${lib.strings.concatLines systems}
+        ${lib.strings.concatLines asList}
       </systemList>
     '';
 in
@@ -34,25 +58,8 @@ in
 
     systems = lib.mkOption {
       type = lib.types.attrs;
-      description = "System definitions";
-
-      default = {
-        snes = {
-          fullName = "Super Nintendo Entertainment System";
-          extension = ".smc .sfc .SMC .SFC";
-          command = "retroarch -L ${pkgs.libretro.bsnes}/lib/retroarch/cores/bsnes_libretro.so %ROM%";
-        };
-        n64 = {
-          fullName = "Nintendo 64";
-          extension = ".n64 .z64 .N64 .Z64";
-          command = "retroarch -L ${pkgs.libretro.mupen64plus}/lib/retroarch/cores/mupen64plus_libretro.so %ROM%";
-        };
-        "3ds" = {
-          fullName = "Nintendo 3DS";
-          extension = ".3ds .3DS";
-          command = "retroarch -L ${pkgs.libretro.citra}/lib/retroarch/cores/citra_libretro.so %ROM%";
-        };
-      };
+      description = "Overrides for pre-defined systems.";
+      default = {};
     };
   };
 
@@ -62,6 +69,8 @@ in
       retroarch
     ];
 
-    home.file.".emulationstation/es_systems.cfg".text = mkSystemCfg cfg.systems;
+    home.file.".emulationstation/es_systems.cfg".text = 
+      mkSystemCfg (lib.attrsets.recursiveUpdate defaultSystems cfg.systems);
+
   };
 }
