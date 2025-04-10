@@ -30,7 +30,7 @@
     steam = {
       enable = true;
       autoStart = true;
-      desktopSession = "gnome";
+      desktopSession = "plasma";
       user = "dasbente";
     };
     devices.steamdeck.enable = true;
@@ -62,9 +62,9 @@
   };
 
   services = {
+    desktopManager.plasma6.enable = true;
     xserver = {
       enable = true;
-      desktopManager.gnome.enable = true;
       xkb = {
         layout = "de";
         variant = "";
