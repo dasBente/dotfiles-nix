@@ -72,5 +72,14 @@ in
     home.file.".emulationstation/es_systems.cfg".text = 
       mkSystemCfg (lib.attrsets.recursiveUpdate defaultSystems cfg.systems);
 
+    home.file.".local/share/applications/Emulation Station.desktop".text = ''
+      [Desktop Entry]
+      Name=Emulation Station
+      Exec=${pkgs.emulationstation}/bin/emulationstation
+      Icon=${pkgs.emulationstation}/share/emulationstation/resources/window_icon_256.png
+      Type=Application
+      Category=Game;
+      Terminal=false
+    '';
   };
 }
