@@ -108,7 +108,6 @@
     ];
   };
 
-  games.honkers-railway-launcher.enable = true;
   games.shipwright.enable = true;
 
   console.keyMap = "de";
