@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
+    ../../modules/games/default.nix
   ];
 
   nixpkgs.config = {
@@ -80,6 +81,7 @@
     xwayland.enable = true;
   };
 
+  games.dwarf-fortress.enable = true;
 
   environment = {
     sessionVariables = {
