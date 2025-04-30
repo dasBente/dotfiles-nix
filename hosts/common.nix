@@ -1,4 +1,4 @@
-{...}: {
+{ pkgs, ...}: {
   imports = [
     ../modules/utilities/default.nix
   ];
@@ -17,4 +17,9 @@
   nix.settings.auto-optimise-store = true;
   utilities.current-system-packages.enable = true;
   programs.zsh.enable = true;
+  programs.direnv.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    devenv
+  ];
 }

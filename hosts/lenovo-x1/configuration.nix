@@ -100,6 +100,8 @@
       steam-run
       pcmanfm
 
+      floorp
+
       # hyprland packages
       swww
       rofi-wayland
