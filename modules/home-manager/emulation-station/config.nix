@@ -8,15 +8,35 @@ let
       extension = ".smc .sfc .SMC .SFC";
       command = "retroarch -L ${pkgs.libretro.bsnes}/lib/retroarch/cores/bsnes_libretro.so %ROM%";
     };
+
     n64 = {
       fullName = "Nintendo 64";
       extension = ".n64 .z64 .N64 .Z64";
-      command = "retroarch -L ${pkgs.libretro.mupen64plus}/lib/retroarch/cores/mupen64plus_libretro.so %ROM%";
+      command = "retroarch -L ${pkgs.libretro.mupen64plus}/lib/retroarch/cores/mupen64plus_next_libretro.so %ROM%";
     };
-    "3ds" = {
+
+    n3ds = {
       fullName = "Nintendo 3DS";
-      extension = ".3ds .3DS";
+      extension = ".nds .NDS .3ds .3DS";
       command = "retroarch -L ${pkgs.libretro.citra}/lib/retroarch/cores/citra_libretro.so %ROM%";
+    };
+
+    gc = {
+      fullName = "Nintendo Gamecube";
+      extension = ".rvz .RVZ .iso .ISO";
+      command = "retroarch -L ${pkgs.libretro.dolphin}/lib/retroarch/cores/dolphin.so %ROM%";
+    };
+
+    wii = {
+      fullName = "Nintendo Wii";
+      extension = ".rvz .RVZ .iso .ISO";
+      command = "retroarch -L ${pkgs.libretro.dolphin}/lib/retroarch/cores/dolphin.so %ROM%";
+    };
+
+    gbc = {
+      fullName = "Gameboy Color";
+      extension = ".gbc .GBC";
+      command = "retroarch -L ${pkgs.libretro.mgba}/lib/retroarch/cores/mgba.so %ROM%";
     };
   };
 

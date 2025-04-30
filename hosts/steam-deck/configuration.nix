@@ -10,6 +10,7 @@
     inputs.home-manager.nixosModules.home-manager
     ../common.nix
     ../../modules/games/default.nix
+    inputs.aagl-nix.nixosModules.default
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -42,6 +43,8 @@
     useUserPackages = true;
     users.dasbente = import ./home.nix;
   };
+
+  programs.honkers-railway-launcher.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 

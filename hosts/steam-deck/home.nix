@@ -9,13 +9,18 @@
   home.file = {
   };
 
+  home.packages = [
+  ];
+
   programs.emulation-station = {
     enable = true;
     romPath = "/run/media/dasbente/7aa6e9a3-4398-4c82-9f5e-f078da5557cc/Emulation/roms";
     systems = {
       snes.enable = true;
       n64.enable = true;
-      "3ds".enable = true;
+      n3ds.enable = true;
+      gbc.enable = true;
+      gc.enable = true;
     };
   };
 
