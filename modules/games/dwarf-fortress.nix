@@ -7,8 +7,10 @@
   config = lib.mkIf config.games.dwarf-fortress.enable {
     environment.systemPackages = with pkgs.dwarf-fortress-packages; [
       (dwarf-fortress-full.override {
+        theme = "obsidian";
         enableDwarfTherapist = true;
         enableLegendsBrowser = true;
+        enableFPS = true;
       })
     ];
   };
