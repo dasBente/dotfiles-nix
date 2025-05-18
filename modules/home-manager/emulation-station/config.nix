@@ -24,19 +24,19 @@ let
     gc = {
       fullName = "Nintendo Gamecube";
       extension = ".rvz .RVZ .iso .ISO";
-      command = "retroarch -L ${pkgs.libretro.dolphin}/lib/retroarch/cores/dolphin.so %ROM%";
+      command = "retroarch -L ${pkgs.libretro.dolphin}/lib/retroarch/cores/dolphin_libretro.so %ROM%";
     };
 
     wii = {
       fullName = "Nintendo Wii";
       extension = ".rvz .RVZ .iso .ISO";
-      command = "retroarch -L ${pkgs.libretro.dolphin}/lib/retroarch/cores/dolphin.so %ROM%";
+      command = "retroarch -L ${pkgs.libretro.dolphin}/lib/retroarch/cores/dolphin_libretro.so %ROM%";
     };
 
     gbc = {
       fullName = "Gameboy Color";
       extension = ".gbc .GBC";
-      command = "retroarch -L ${pkgs.libretro.mgba}/lib/retroarch/cores/mgba.so %ROM%";
+      command = "retroarch -L ${pkgs.libretro.mgba}/lib/retroarch/cores/mgba_libretro.so %ROM%";
     };
   };
 
