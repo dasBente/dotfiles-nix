@@ -9,7 +9,9 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.packages = import ./bins/default.nix {inherit pkgs;};
+  home.packages = import ./bins/default.nix {
+    inherit pkgs;
+  };
 
   home.file = {
   };

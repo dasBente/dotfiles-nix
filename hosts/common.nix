@@ -10,7 +10,7 @@
   # Automatic garbage collection
   nix.gc = {
     automatic = true;
-    dates = "daily";
+    dates = "weekly";
     options = "--delete-older-than 14d";
   };
 
@@ -21,5 +21,6 @@
 
   environment.systemPackages = with pkgs; [
     devenv
+    nix-direnv
   ];
 }
