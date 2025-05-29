@@ -101,6 +101,7 @@
       pcmanfm
 
       floorp
+      libreoffice
 
       # hyprland packages
       swww

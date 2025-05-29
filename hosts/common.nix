@@ -22,5 +22,7 @@
   environment.systemPackages = with pkgs; [
     devenv
     nix-direnv
+    wineWowPackages.stable
+    winetricks
   ];
 }
