@@ -45,6 +45,7 @@
   };
 
   programs.honkers-railway-launcher.enable = true;
+  programs.sleepy-launcher.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -104,6 +105,8 @@
       firefox-wayland
       discord-ptb
       steam-run
+
+      floorp
 
       (waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
