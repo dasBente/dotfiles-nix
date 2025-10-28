@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  system,
   ...
 }: {
   imports = [
@@ -95,15 +96,11 @@
       pkgs.home-manager
       git
       networkmanagerapplet
-      firefox-wayland
       discord-ptb
       steam-run
       pcmanfm
 
-      floorp
-      ungoogled-chromium
-
-      nyxt
+      inputs.helium.defaultPackage.${system}
 
       # hyprland packages
       swww
@@ -138,7 +135,6 @@
     shell = pkgs.zsh;
   };
 
-  programs.firefox.enable = true;
   programs.steam.enable = true;
 
   xdg.portal.enable = true;
