@@ -53,8 +53,8 @@
   services = {
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+      # displayManager.gdm.enable = true;
+      # desktopManager.gnome.enable = true;
       xkb = {
         layout = "de";
         variant = "";
@@ -82,7 +82,7 @@
   };
 
   games.dwarf-fortress.enable = true;
-
+  
   environment = {
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
@@ -101,7 +101,9 @@
       pcmanfm
 
       floorp
-      libreoffice
+      ungoogled-chromium
+
+      nyxt
 
       # hyprland packages
       swww

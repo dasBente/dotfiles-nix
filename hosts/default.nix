@@ -1,9 +1,11 @@
 {nixpkgs, inputs, ...}:
 let
   system = "x86_64-linux";
+  overlays = [
+  ];
 in {
   lenovo-x1 = nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs system;};
+    specialArgs = {inherit inputs system overlays;};
     modules = [
       ./lenovo-x1/configuration.nix
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-extreme
