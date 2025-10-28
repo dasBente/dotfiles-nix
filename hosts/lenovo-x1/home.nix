@@ -3,6 +3,7 @@
     ../../modules/home-manager/common.nix
     ../../modules/home-manager/hyprland/config.nix
     ../../modules/home-manager/default.nix
+    ../../modules/home-manager/nushell/config.nix
   ];
 
   home.stateVersion = "24.11"; # do not touch unless necessary!
@@ -24,6 +25,8 @@
     "video/jpg" = ["mpv.desktop"];
     "video/*" = ["mpv.desktop"];
   };
+
+  home.nushell.enable = true;
 
   programs.emulation-station = {
     enable = true;
