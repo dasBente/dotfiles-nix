@@ -25,4 +25,11 @@
     wineWowPackages.stable
     winetricks
   ];
+
+  programs.ssh.extraConfig = ''
+  Host dasbente.moe
+    HostName git.dasbente.moe
+    User git
+    Port 222
+  '';
 }
