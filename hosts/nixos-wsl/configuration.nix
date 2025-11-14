@@ -16,6 +16,11 @@
     users.nixos = import ./home.nix;
   };
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    code
+  ];
+
   networking.hostName = "nixos-wsl";
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -42,6 +47,10 @@
       {src = "${su}/bin/usermod";}
     ];
   };
+
+  environment.systemPackages = with pkgs; [
+    wget
+  ];
 
   system.stateVersion = "24.05"; # Did you read the comment?
 
