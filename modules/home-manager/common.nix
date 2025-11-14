@@ -28,15 +28,14 @@
     enable = true;
     lfs.enable = true;
 
-    extraConfig = {
+    settings.user = {
+      name = "dasBente";
+      email = "dasbente@gmail.com";
       push = {autoSetupRemote = true;};
       pull = {rebase = true;};
       core = {editor = "nvim";};
       init = {defaultBranch = "main";};
     };
-
-    userName = "dasBente";
-    userEmail = "dasbente@gmail.com";
   };
 
 }

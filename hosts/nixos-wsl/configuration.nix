@@ -24,6 +24,7 @@
   networking.hostName = "nixos-wsl";
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.package = pkgs.nixVersions.latest;
 
   users.users.nixos = {
     isNormalUser = true;

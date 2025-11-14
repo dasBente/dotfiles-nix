@@ -21,7 +21,7 @@
         theme = "avit";
       };
 
-      initExtra = ''
+      initContent = ''
       bindkey -s ^f "tmux-sessionizer\n"
       '';
     };

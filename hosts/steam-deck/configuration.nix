@@ -13,12 +13,6 @@
     inputs.aagl-nix.nixosModules.default
   ];
 
-  nixpkgs.config.packageOverrides = pkgs: {
-  };
-
-  nixpkgs.config.permittedInsecurePackages = [
-      "freeimage-unstable-2021-11-01"
-    ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -131,7 +125,6 @@
   programs.firefox.enable = true;
   programs.steam.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];

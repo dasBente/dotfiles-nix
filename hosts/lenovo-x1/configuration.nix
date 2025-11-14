@@ -11,13 +11,6 @@
     ../../modules/games/default.nix
   ];
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    packageOverrides = pkgs: {};
-    permittedInsecurePackages = [
-      "freeimage-unstable-2021-11-01"
-    ];
-  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -62,7 +55,7 @@
       };
     };
 
-    logind = {
+    logind.settings.Login = {
       extraConfig = "HandlePowerKey=suspend";
       lidSwitch = "suspend";
     };
@@ -82,7 +75,7 @@
     xwayland.enable = true;
   };
 
-  games.dwarf-fortress.enable = true;
+  # games.dwarf-fortress.enable = true;
   
   environment = {
     sessionVariables = {
@@ -104,7 +97,7 @@
 
       # hyprland packages
       swww
-      rofi-wayland
+      rofi
 
       (waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
@@ -124,6 +117,14 @@
   };
 
   console.keyMap = "de";
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {};
+    permittedInsecurePackages = [
+      "freeimage-unstable-2021-11-01"
+    ];
+  };
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;

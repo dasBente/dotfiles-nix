@@ -11,6 +11,7 @@
   home.file = {
   };
 
+
   gtk = {
     enable = true;
     theme.name = "adw-gtk3";

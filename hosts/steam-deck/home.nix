@@ -12,6 +12,12 @@
   home.packages = [
   ];
 
+  # nixpkgs.config = {
+  #   allowUnfree = true;
+  #   packageOverrides = pkgs: {};
+  #   permittedInsecurePackages = ["freeimage-unstable-2021-11-01"];
+  # };
+
   programs.emulation-station = {
     enable = true;
     romPath = "/run/media/dasbente/7aa6e9a3-4398-4c82-9f5e-f078da5557cc/Emulation/roms";
