@@ -14,6 +14,8 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    portable-nvim.url = "github:dasbente/portable-nvim/main";
+
     helium.url = "github:FKouhai/helium2nix/main";
 
     home-manager = {
